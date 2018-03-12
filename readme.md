@@ -2,15 +2,13 @@
 
 Cross-platform plugin for Cordova / PhoneGap to to easily send SMS. Available for **Android**, **iOS**, **Windows Phone 8** and **Windows 10 Universal**.
 
+This is an extension of cordova-sms-plugin to send MMS for Android.
+
+         ##### UNDER DEVELOPMENT!!!  Use at your own risk.  @dbaq is the expert on this plugn.
+
 ## Installing the plugin
 
-Using the Cordova CLI and NPM, run:
-
-    cordova plugin add cordova-sms-plugin
-
-It is also possible to install via repo url directly (unstable), run :
-
-    cordova plugin add https://github.com/cordova-sms/cordova-sms-plugin.git
+    cordova plugin add https://github.com/jondspa/cordova-sms-plugin.git
 
 ## Using the plugin
 HTML
@@ -71,6 +69,25 @@ On Android, two extra functions are exposed to know whether or not an app has pe
             };
             var error = function (e) { alert('Something went wrong:' + e); };
             sms.hasPermission(success, error);
+        }
+    };
+    
+    To send MMS on Android, here is a snippet:
+    
+    intent = 'INTENT';
+    if (dataURL === "" || dataURL === null) {
+        sms.send("", string, "", intent, success, error);
+    } else {
+        sms.send("", string, dataURL, intent, success, error);
+    }
+    success = function () {
+        if (DEBUG) {
+            window.alert('Message sent successfully');
+        }
+    };
+    error = function (e) {
+        if (DEBUG) {
+            window.alert('Message Failed:' + e);
         }
     };
 
@@ -193,6 +210,7 @@ Ask, or pick an issue and comment on it announcing your desire to work on it. Id
 -  The Android portion was forked from https://github.com/javatechig/phonegap-sms-plugin by @javatechig and then modified to upgrade it to phonegap 3.0.
 - The iOS portion was copied from https://github.com/phonegap/phonegap-plugins by Jesse MacFadyen and then modified slightly to work with this plugin and phonegap 3.x by @aharris88.
 - The Windows Phone 8 part was contributed by [fredrikeldh](https://github.com/fredrikeldh)
+- This Android MMS extension is by @JonSchlossberg.
 - This repository is now maintained by @dbaq.
 
 ## License
